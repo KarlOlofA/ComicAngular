@@ -1,0 +1,62 @@
+<mat-toolbar color="accent" class="toolbar-style">
+
+  <!-- Left side back button -->
+  <button mat-icon-button (click)="getPreviousRandomComic()">
+    <mat-icon>{{ previous_random_icon }}</mat-icon>
+  </button>
+
+  <!-- Center title and navigation buttons -->
+  <div class="title-style">
+    <mat-card-actions>
+      <button mat-raised-button (click)="getPreviousComic()" color="primary" class="button-style">Previous</button>
+      {{comic.title}} # {{comic.num}}
+      <button mat-raised-button (click)="getNextComic()" color="primary" class="button-style">Next</button>
+    </mat-card-actions>
+  </div>
+
+  <!-- Right side vertical menu button -->
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Icon button with menu">
+    <mat-icon>{{ vertical_drop_icon }}</mat-icon>
+  </button>
+
+  <!-- Right side vertical menu -->
+  <mat-menu #menu="matMenu" >
+    <!-- Load a new random comic Button -->
+    <button mat-menu-item (click)="getNewRandomComic()">
+      <mat-icon>{{random_comic_button}}</mat-icon>
+      <span>Get Random Comic</span>
+    </button>
+
+    <!-- Developer List Button -->
+    <button mat-menu-item [matMenuTriggerFor]="developer">
+      <mat-icon>{{developers_list_button}}</mat-icon>
+      <span>Developers</span>
+    </button>
+    <!-- Developer List Expanded -->
+    <mat-menu #developer="matMenu">
+      <ul>
+        <li *ngFor="let developer of developers;">
+          <button mat-menu-item disabled>
+            <span>{{developer}}</span>
+          </button>
+        </li>
+      </ul>
+    </mat-menu>
+  </mat-menu>
+</mat-toolbar>
+
+<!-- Comic and comic transcript -->
+<div class="comic-align">
+  <mat-card class="center-card">
+    <img mat-card-image src={{comic.img}} *ngIf="loading$">
+    <mat-card-content>
+      <p>
+        {{comic.transcript}}
+        {{comic.alt}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+  <mat-progress-spinner [mode]="'indeterminate'" class="center-card" *ngIf="loading$ | async"></mat-progress-spinner>
+</div>
+
+

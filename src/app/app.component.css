@@ -1,0 +1,19 @@
+toolbar{
+  text-align: center;
+  font-size: 50px;
+}
+button{
+  font-size: 15px;
+  position: relative;
+  margin: 0;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+mat-icon{
+  font-size: 40px;
+  margin: 0;
+  left: 25%;
+  top: 25%;
+  transform: translate(-30%, -35%);
+}
