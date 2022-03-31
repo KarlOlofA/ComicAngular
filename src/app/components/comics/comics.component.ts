@@ -27,12 +27,13 @@ export class ComicsComponent implements OnInit {
   /* Used for loading spinner */
   loading$ = this.loader.loading$;
 
+  /* Icon tags for buttons*/
   vertical_drop_icon = "more_vert"
-
   previous_random_icon = "arrow_back"
   random_comic_button = "widgets"
   developers_list_button = "engineering"
 
+  /* Debug list for developers tab */
   developers = ["Karl Andersson", "Some other person", "Example 3"];
 
   // Logic for calling an HTTP service
@@ -40,6 +41,7 @@ export class ComicsComponent implements OnInit {
     this.getComicData()
   }
 
+  /* Gets data from service to be applied in html*/
   getComicData(){
     this.comicService.getComics().subscribe(response =>{
       this.comic.img = response.img
@@ -50,16 +52,17 @@ export class ComicsComponent implements OnInit {
     })
   }
 
-  /*Random Comic*/
+  /* Provides a new Random Comic */
   getNewRandomComic(){
     this.comicService.randomiseNewComic()
     this.getComicData()
   }
+  /* Provides the previously chosen Random Comic */
   getPreviousRandomComic(){
     this.comicService.getPreviousRandomComic()
     this.getComicData()
   }
-  /*Comic Navigation*/
+  /* Comic Navigation */
   getNextComic(){
     this.comicService.setCurrentComicID(1)
     this.getComicData()
